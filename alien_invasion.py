@@ -24,7 +24,7 @@ class AlienInvasion:
 
         pygame.mixer.init()
         self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
-        self.laser_sound.set_volume(0.7)
+        self.laser_sound.set_volume(1)
 
 
         self.arrow = Arrow(self, Arsenal(self))
