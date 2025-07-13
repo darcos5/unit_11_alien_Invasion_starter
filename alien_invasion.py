@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from arrow import Arrow
 
 #I installed github and pygames. I believe I followed all the steps nesscary but please let me know if I messed up 
 #I added these following part so the game screen would appear 
@@ -19,6 +20,9 @@ class AlienInvasion:
         
         self.running = True
         self.clock = pygame.time.Clock()
+
+
+        self.arrow = Arrow(self)
 #went through walkthrough- fixed according to class video
     def run_game(self): #game loop
         while self.running:
@@ -36,6 +40,7 @@ class AlienInvasion:
         #note: isnt displaying the color i had chosen but i will come back to this later
         #it was the identation, lol
             self.screen.blit(self.bg,(0,0))
+            self.arrow.draw()
             pygame.display.flip() #will make the screen update
             self.clock.tick(self.settings.FPS)
         #render the graphics

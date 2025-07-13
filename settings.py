@@ -7,3 +7,7 @@ class Settings:
         self.screen_l = 800
         self.FPS = 60 
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'heartbackground.png'
+
+        self.arrow_file = Path.cwd() / 'Assets' / 'images' / 'arrow.png'
+        self.arrow_w = 100
+        self.arrow_h = 160
