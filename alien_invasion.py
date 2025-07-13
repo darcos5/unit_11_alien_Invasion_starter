@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from arrow import Arrow
+from arsenal import Arsenal
 
 #I installed github and pygames. I believe I followed all the steps nesscary but please let me know if I messed up 
 #I added these following part so the game screen would appear 
@@ -21,8 +22,12 @@ class AlienInvasion:
         self.running = True
         self.clock = pygame.time.Clock()
 
+        pygame.mixer.init()
+        self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
+        self.laser_sound.set_volume(0.7)
 
-        self.arrow = Arrow(self)
+
+        self.arrow = Arrow(self, Arsenal(self))
 #went through walkthrough- fixed according to class video
     def run_game(self): #game loop
         while self.running:
@@ -53,16 +58,21 @@ class AlienInvasion:
             self.arrow.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.arrow.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            if self.arrow.fire():
+                self.laser_sound.play()
+                self.laser_sound.fadeout(250)
+        elif event.key == pygame.K_q:
+            self.running = False
+            pygame.quit()
+            sys.exit()
     
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.arrow.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.arrow.moving_left = False
-        elif event.key == pygame.K_q:
-            self.running = False
-            pygame.quit()
-            sys.exit()
+       
 
         #render the graphics
 
