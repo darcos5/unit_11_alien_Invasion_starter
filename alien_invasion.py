@@ -26,23 +26,23 @@ class AlienInvasion:
 #went through walkthrough- fixed according to class video
     def run_game(self): #game loop
         while self.running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                    pygame.quit()
-                    sys.exit()
+            self._check_events()
 
 
-
-
-            #fix this in a bit, giving up on the pink background for now 
-        #self.screen.fill(self.baby_pink) # fill display with solid color
-        #note: isnt displaying the color i had chosen but i will come back to this later
-        #it was the identation, lol
-            self.screen.blit(self.bg,(0,0))
-            self.arrow.draw()
-            pygame.display.flip() #will make the screen update
+            self._update_screen() #will make the screen update
             self.clock.tick(self.settings.FPS)
+
+    def _update_screen(self):
+        self.screen.blit(self.bg,(0,0))
+        self.arrow.draw()
+        pygame.display.flip()
+
+    def _check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+                pygame.quit()
+                sys.exit()
         #render the graphics
 
 
