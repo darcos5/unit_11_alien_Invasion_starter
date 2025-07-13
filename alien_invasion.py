@@ -27,8 +27,7 @@ class AlienInvasion:
     def run_game(self): #game loop
         while self.running:
             self._check_events()
-
-
+            self.arrow.update()
             self._update_screen() #will make the screen update
             self.clock.tick(self.settings.FPS)
 
@@ -43,6 +42,28 @@ class AlienInvasion:
                 self.running = False
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+            elif event.type == pygame.KEYUP:
+                self._check_keyup_events
+
+
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.arrow.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.arrow.moving_left = True
+    
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.arrow.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.arrow.moving_left = False
+        elif event.key == pygame.K_q:
+            self.running = False
+            pygame.quit()
+            sys.exit()
+
         #render the graphics
 
 
